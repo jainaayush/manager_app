@@ -1,0 +1,1 @@
+ImportPaymentRequestService.new.subscribe_to_queue
