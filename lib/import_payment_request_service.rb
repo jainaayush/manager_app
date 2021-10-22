@@ -2,7 +2,7 @@
 
 require 'bunny'
 
-class ExportPaymentRequestService
+class ImportPaymentRequestService
   def subscribe_to_queue
     BunnyClient.incoming_queue.subscribe do |_delivery_info, _metadata, message|
       create_payment_request(message)
@@ -11,7 +11,7 @@ class ExportPaymentRequestService
 
   private
 
-  def create_payment_request(payment_request)
+  def create_payment_request(message)
     parsed_msg = JSON.parse(message)
 
     payment_request = PaymentRequest.new(amount: parsed_msg['amount'], currency: parsed_msg['currency'],
