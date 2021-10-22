@@ -1,24 +1,32 @@
-# README
+# Manager application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a event driven application which uses `RabbitMQ` and `Bunny` plugin for publishing and accepting messages. Manager application displays all payment requests submitted by the contractor. The manager can accept or reject the payment request. The acceptance/rejection of payment request is done by manager app after which it publishes an event and the contractor app process the event to update the status for the contractor.
 
-Things you may want to cover:
+## Getting started
 
-* Ruby version
+To get started with the app, first clone the repo and `cd` into the directory:
 
-* System dependencies
+```
+$ git clone https://github.com/jainaayush/manager_app.git
+$ cd contractor
+```
 
-* Configuration
+Then install the needed gems:
 
-* Database creation
+```
+$ bundle install
+```
 
-* Database initialization
+Next, migrate the database:
 
-* How to run the test suite
+```
+$ rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Finally, run the server:
 
-* Deployment instructions
+```
+$ rails server
+```
 
-* ...
+This uses `RabbitMQ` so we need to setup rabbitmq server at development sert but currently the app uses the cloudamqp RabbitMq cloud server URL so we can skip the installation at local. 
