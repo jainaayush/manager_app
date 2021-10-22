@@ -9,6 +9,7 @@
       <th>Currency</th>
       <th>Description</th>
       <th>Status</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -18,7 +19,11 @@
         <td><%= payment_request.amount %></td>
         <td><%= payment_request.currency %></td>
         <td><%= payment_request.description %></td>
-        <td><%= payment_request.status %></td>
+        <td><%= payment_request.status.titleize %></td>
+        <% if payment_request.pending? %>
+          <td><%= link_to 'Approve', approve_payment_request_path(payment_request) %></td>
+          <td><%= link_to 'Reject', reject_payment_request_path(payment_request), data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

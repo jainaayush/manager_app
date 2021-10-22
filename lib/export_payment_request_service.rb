@@ -12,7 +12,7 @@ class ExportPaymentRequestService
   def publish
     return if payment_request.nil?
 
-    exchange = channel.exchange('')
+    exchange = BunnyClient.channel.exchange('')
     exchange.publish(payload, routing_key: BunnyClient.sending_queue.name, persistent: true)
   end
 
